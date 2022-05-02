@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar Jogador</title>
+</head>
+<body>
+	
+	<div>
+		<form action="/v1/jogador/cadastrar" method="post">
+		
+			<label for="nome">Nome</label>
+			<input type="text" id="nome">
+			
+			
+			<label for="idade">Idade</label>
+			<input type="text" id="idade">
+			
+			
+		
+			<select name="select">
+			  <option value="valor1">Atacante</option>
+			  <option value="valor2" selected>Meio de Campo</option>
+			  <option value="valor3">Lateral</option>
+			  <option value="valor4" selected>Zagueiro</option>
+			  <option value="valor5">Goleiro</option>
+			</select>
+					
+						 
+			<input type="submit" value="Enviar">
+	
+		</form>
+	</div>
+
+</body>
+</html>

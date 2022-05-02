@@ -1,33 +1,42 @@
 package br.com.fuctura.controller;
 
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import br.com.fuctura.model.Jogador;
+import br.com.fuctura.repository.JogadorRepository;
+
+import java.util.Optional;
 
 @Controller
 public class OlaMundoController {
 	
-	@GetMapping ("/inicial")
+	@Autowired
+	JogadorRepository repository; //injetado
+	
+	//
+	@GetMapping("/inicial")
 	public String getInicial(Model model) {
 		
-		Jogador j = new Jogador();
-		
-		j.setNome("Ronaldo");
-		j.setIdade(33);
-		j.setAltura(1.79);
-		j.setPeso(86);
-		j.setImg("https://static-img.zz.pt/history/imgS620I11648T20190508162847.jpg");
-		
-		model.addAttribute("jogador", j);
-		model.addAttribute("TituloDaPagina", "Fuctura");
+		Optional<Jogador> jogador = repository.findById(1L);
 			
+		if(jogador.isPresent()) {
+			model.addAttribute("jogador", jogador.get());
+		}
+		
+		
+		model.addAttribute("tituloDaPagina", "");
+		
 		return "inicial";
 	}
 	
-	@GetMapping ("/outra")
-	public String getOutra() {
-		return "outra";
+	//localhost:9080/outra
+	@GetMapping("/outra")
+	public String fuctura() {
+		return "outraPagina";
 	}
 }
